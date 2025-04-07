@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trivy-operator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/OysteinThuen/argocd.git
+    targetRevision: HEAD
+    path: 'manifests/bootstrap/dev/trivy-operator'
+    helm:
+      releaseName: trivy-operator
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: trivy-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
