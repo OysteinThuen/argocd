@@ -5,7 +5,3 @@ kube-prometheus-stack:
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
-      logLevel: debug
-
-  prometheusOperator:
-    logLevel: debug
