@@ -1,5 +1,6 @@
 prometheus:
   prometheusSpec:
-    serviceMonitorSelectorNilUsesHelmValues: true
-    serviceMonitorSelector: {}
-    serviceMonitorNamespaceSelector: {}
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
