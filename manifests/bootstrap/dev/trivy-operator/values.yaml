@@ -1,8 +1,9 @@
-serviceMonitor:
-  # enabled determines whether a serviceMonitor should be deployed
-  enabled: true
-trivy:
-  ignoreUnfixed: true
-service:
-  # disabled ensures that the pod gets a ClusterIP.
-  headless: false  
+trivy-operator:
+  serviceMonitor:
+    # enabled determines whether a serviceMonitor should be deployed
+    enabled: true
+  trivy:
+    ignoreUnfixed: true
+  service:
+    # disabled ensures that the pod gets a ClusterIP.
+    headless: false  
