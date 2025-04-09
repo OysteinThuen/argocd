@@ -3,4 +3,5 @@ name: echo-server-umbrella
 version: 0.1.0
 dependencies:
   - name: echo-server
+    version: 0.5.1
     repository: https://ealenn.github.io/charts
