@@ -50,7 +50,7 @@ dependencies:
     repository: <chart-repository>
 ```
 
-4. **Optional**: Add a `values.yaml` file in the `dev/<chart-name>` directory to override the default values of the Helm chart.
+4. **Optional**: Add a `values.yaml` file in the `dev/<chart-name>` directory to override the default values of the Helm chart. **Note** the extra top level node called `<chart-name>`. 
 
 ```yaml
 <chart-name>:
