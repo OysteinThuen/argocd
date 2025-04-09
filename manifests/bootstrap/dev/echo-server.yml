@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sealed-secrets
+  name: echo-server
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/OysteinThuen/argocd.git
     targetRevision: HEAD
-    path: 'manifests/bootstrap/dev/sealed-secrets'
+    path: 'manifests/bootstrap/dev/echo-server'
     helm:
-      releaseName: sealed-secrets
+      releaseName: echo-server
   destination:
     server: https://kubernetes.default.svc
-    namespace: sealed-secrets
+    namespace: echo-server
   syncPolicy:
     automated:
       selfHeal: true
