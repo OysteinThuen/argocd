@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: echo-server
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/OysteinThuen/argocd.git
+    targetRevision: HEAD
+    path: 'manifests/bootstrap/dev/echo-server'
+    helm:
+      releaseName: echo-server
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: echo-server
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
