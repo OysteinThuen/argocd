@@ -10,6 +10,9 @@ spec:
       app.kubernetes.io/name: ubuntu
       app.kubernetes.io/instance: ubuntu
   egress:
+    - toEntities:
+      - host
+      - remote-node
     - toServices:
       - k8sServiceSelector:
           selector:
