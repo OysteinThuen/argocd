@@ -7,7 +7,7 @@ spec:
   description: "Ubuntu"
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/name: ubuntu
+      app.kubernetes.io/name: ubuntu2
       app.kubernetes.io/instance: ubuntu
   egress:
     - toEntities:
