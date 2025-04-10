@@ -10,12 +10,6 @@ spec:
       app.kubernetes.io/name: ubuntu
       app.kubernetes.io/instance: ubuntu
   egress:
-    # - toServices:
-    #   # Services may be referenced by namespace + name
-    #   - k8sService:
-    #       serviceName: demoapp
-    #       namespace: nginx
-    # Services may be referenced by namespace + label selector
     - k8sServiceSelector:
         selector:
           matchLabels:
@@ -23,11 +17,6 @@ spec:
             app.kubernetes.io/instance: demoapp
             app.kubernetes.io/version: alpine3.21-perl
         namespace: nginx
-    # - toEndpoints:
-    #     - matchLabels:
-    #         app.kubernetes.io/name: demoapp
-    #         app.kubernetes.io/instance: demoapp
-    #         app.kubernetes.io/version: alpine3.21-perl
     - toEndpoints:
         - matchLabels:
             "k8s:io.kubernetes.pod.namespace": kube-system
