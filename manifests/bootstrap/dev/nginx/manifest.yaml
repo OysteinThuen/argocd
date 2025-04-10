@@ -78,6 +78,12 @@ spec:
           requests:
             cpu: 50m
             memory:  100Mi
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
 ---
 # Source: elvia-deployment/templates/service-monitor.yaml
 kind: ServiceMonitor
