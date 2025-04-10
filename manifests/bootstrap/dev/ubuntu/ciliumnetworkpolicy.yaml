@@ -1,0 +1,41 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: "ubuntu"
+  namespace: monitoring
+spec:
+  description: "Ubuntu"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: ubuntu
+      app.kubernetes.io/instance: ubuntu
+  egress:
+    - toServices:
+      # Services may be referenced by namespace + name
+      - k8sService:
+          serviceName: demoapp
+          namespace: nginx
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            "k8s:k8s-app": kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: ANY
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toFQDNs:
+        - matchName: "security.ubuntu.com"
+        - matchName: "ubuntu.com"
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+    - toFQDNs:
+        - matchName: "google.no"
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
