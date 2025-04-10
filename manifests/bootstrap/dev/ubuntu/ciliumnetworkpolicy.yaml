@@ -28,3 +28,9 @@ spec:
         - ports:
             - port: "80"
               protocol: TCP
+    - toFQDNs:
+        - matchName: "google.no"
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
