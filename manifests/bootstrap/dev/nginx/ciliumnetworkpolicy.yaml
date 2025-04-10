@@ -4,7 +4,11 @@ metadata:
   name: "default-deny"
   namespace: nginx
 spec:
-  description: "Block all the traffic (except DNS) by default"
+  description: "Block all the traffic (except DNS) by default. Allow traffic from cluster."
+  ingress:
+    - fromEntities:
+      - host
+      - remote-node
   egress:
   - toEndpoints:
     - matchLabels:
