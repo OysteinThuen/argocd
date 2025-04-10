@@ -17,9 +17,3 @@ spec:
       rules:
         dns:
         - matchPattern: '*'
-  endpointSelector:
-    matchExpressions:
-    - key: io.kubernetes.pod.namespace
-      operator: NotIn
-      values:
-      - kube-system
