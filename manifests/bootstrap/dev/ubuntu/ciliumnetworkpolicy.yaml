@@ -9,5 +9,5 @@ spec:
     matchLabels:
       app.kubernetes.io/name: ubuntu
   egress:
-    - toCIDR:
-      - 10.0.0.153/32
+    - toEntities:
+      - host
