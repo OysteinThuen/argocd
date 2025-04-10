@@ -1,27 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: busybox
+  name: ubuntu
   namespace: monitoring
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: busybox
-      app.kubernetes.io/instance: busybox
+      app.kubernetes.io/name: ubuntu
+      app.kubernetes.io/instance: ubuntu
   template:
     metadata:
       annotations:
-        kubectl.kubernetes.io/default-container: busybox
+        kubectl.kubernetes.io/default-container: ubuntu
       labels:
-        app.kubernetes.io/name: busybox
-        app.kubernetes.io/instance: busybox
+        app.kubernetes.io/name: ubuntu
+        app.kubernetes.io/instance: ubuntu
     spec:
       containers:
-      - name: busybox
-        image: busybox
+      - name: ubuntu
+        image: ubuntu
         imagePullPolicy: Always
-        command: ['sh', '-c', 'while true; do sleep 6000; done']
         resources:
           limits:
             cpu: 1000m
