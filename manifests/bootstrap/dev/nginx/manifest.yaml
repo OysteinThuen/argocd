@@ -31,7 +31,9 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app.kubernetes.io/name: nginx
+      app.kubernetes.io/instance: nginx
+      app.kubernetes.io/version: stable-alpine
       microservice-type: webapp
   strategy:
     rollingUpdate:
@@ -43,11 +45,12 @@ spec:
       annotations:
         kubectl.kubernetes.io/default-container: nginx
       labels:
-        app: nginx
+        app.kubernetes.io/name: nginx
+        app.kubernetes.io/instance: nginx
+        app.kubernetes.io/version: stable-alpine
         microservice-type: webapp
         azure.workload.identity/use: "true"
     spec:
-      serviceAccountName: nginx
       imagePullSecrets:
       - name: containerregistryelvia
       securityContext:
