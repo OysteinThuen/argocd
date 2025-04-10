@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+spec: {}
 ---
 # Source: elvia-deployment/templates/service.yaml
 kind: Service
