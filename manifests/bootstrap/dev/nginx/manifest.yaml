@@ -1,0 +1,83 @@
+---
+# Source: elvia-deployment/templates/service.yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+  namespace: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - name: nginxport
+    port: 8080 
+  selector:
+    app: nginx
+---
+# Source: elvia-deployment/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      microservice-type: webapp
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: nginx
+      labels:
+        app: nginx
+        microservice-type: webapp
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: nginx
+      imagePullSecrets:
+      - name: containerregistryelvia
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+        supplementalGroups: [1001]
+      containers:
+      - name: nginx
+        image: ghcr.io/nginx/nginx-unprivileged:stable-alpine
+        imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        resources:
+          limits:
+            cpu: 100m
+            memory:  128Mi
+          requests:
+            cpu: 50m
+            memory:  100Mi
+---
+# Source: elvia-deployment/templates/service-monitor.yaml
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: nginx
+  namespace: nginx
+spec:
+  endpoints:
+  - port: nginxport
+  selector:
+    matchLabels:
+      app: nginx
