@@ -26,5 +26,5 @@ spec:
         - matchName: "ubuntu.com"
       toPorts:
         - ports:
-            - port: "443"
+            - port: "80"
               protocol: TCP
