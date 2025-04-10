@@ -10,6 +10,11 @@ spec:
       app.kubernetes.io/name: ubuntu
       app.kubernetes.io/instance: ubuntu
   egress:
+    - toServices:
+      # Services may be referenced by namespace + name
+      - k8sService:
+          serviceName: demoapp
+          namespace: nginx
     - toEndpoints:
         - matchLabels:
             "k8s:io.kubernetes.pod.namespace": kube-system
