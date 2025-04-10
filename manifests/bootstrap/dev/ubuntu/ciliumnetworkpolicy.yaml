@@ -10,20 +10,21 @@ spec:
       app.kubernetes.io/name: ubuntu
       app.kubernetes.io/instance: ubuntu
   egress:
-  - toEndpoints:
-    - matchLabels:
-        io.kubernetes.pod.namespace: kube-system
-        k8s-app: kube-dns
-    toPorts:
-    - ports:
-      - port: '53'
-        protocol: UDP
-      rules:
-        dns:
-        - matchPattern: '*'
-  endpointSelector:
-    matchExpressions:
-    - key: io.kubernetes.pod.namespace
-      operator: NotIn
-      values:
-      - kube-system
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            "k8s:k8s-app": kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: ANY
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toFQDNs:
+        - matchName: "security.ubuntu.com"
+        - matchName: "ubuntu.com"
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
