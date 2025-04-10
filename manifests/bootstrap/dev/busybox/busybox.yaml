@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: busybox
+      app.kubernetes.io/instance: busybox
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: busybox
+      labels:
+        app.kubernetes.io/name: busybox
+        app.kubernetes.io/instance: busybox
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 1000m
+            memory:  1280Mi
+          requests:
+            cpu: 50m
+            memory:  100Mi

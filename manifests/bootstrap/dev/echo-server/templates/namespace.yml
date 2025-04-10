@@ -3,5 +3,5 @@ kind: Namespace
 metadata:
   name: echo-server
   labels:
-    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/enforce: restricted
 spec: {}
