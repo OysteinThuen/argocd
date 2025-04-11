@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatewayapi
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/OysteinThuen/argocd.git
+    targetRevision: HEAD
+    path: 'manifests/bootstrap/dev/gatewayapi'
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false # If you delete the CRDs, all resourses of this type is deleted!
