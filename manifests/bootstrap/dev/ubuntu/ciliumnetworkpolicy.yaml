@@ -10,6 +10,17 @@ spec:
       app.kubernetes.io/name: ubuntu
   egress:
   - toEndpoints:
+
+    # Allow communication to nginx/demoapp
     - matchLabels:
         k8s:io.kubernetes.pod.namespace: nginx
         app.kubernetes.io/instance: demoapp
+
+    # needed for apt
+    - toFQDNs:
+        - matchName: "security.ubuntu.com"
+        - matchName: "ubuntu.com"
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
