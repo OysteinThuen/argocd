@@ -16,3 +16,8 @@ cilium:
       enabled: true
     ui:
       enabled: true
+
+  kubeProxyReplacement: true
+
+  gatewayAPI:
+    enabled: true
