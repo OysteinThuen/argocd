@@ -1,17 +1,18 @@
-# https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
+ # https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
+cilium:
 
-nodePort:
-  enabled: true
-
-operator:
-  # -- Number of replicas to run for the cilium-operator deployment
-  replicas: 1
-
-aksbyocni:
-  enabled: true
-
-hubble:
-  relay:
+  nodePort:
     enabled: true
-  ui:
+
+  operator:
+    # -- Number of replicas to run for the cilium-operator deployment
+    replicas: 1
+
+  aksbyocni:
     enabled: true
+
+  hubble:
+    relay:
+      enabled: true
+    ui:
+      enabled: true
