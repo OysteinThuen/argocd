@@ -11,7 +11,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: ubuntu
-            k8s:io.kubernetes.pod.namespace: monitoring
+            k8s:io.kubernetes.pod.namespace: monitoring2
   egress:
     - toEndpoints:
         - matchLabels:
