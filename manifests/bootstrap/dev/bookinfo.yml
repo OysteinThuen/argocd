@@ -13,6 +13,7 @@ spec:
     path: 'manifests/bootstrap/dev/bookinfo'
   destination:
     server: https://kubernetes.default.svc
+    namespace: bookinfo
   syncPolicy:
     automated:
       prune: true
