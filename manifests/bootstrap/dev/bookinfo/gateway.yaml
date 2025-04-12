@@ -3,6 +3,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: my-gateway
+  namespace: bookinfo
 spec:
   gatewayClassName: cilium
   listeners:
@@ -20,7 +21,7 @@ metadata:
 spec:
   parentRefs:
   - name: my-gateway
-    namespace: default
+    namespace: bookinfo
   rules:
   - matches:
     - path:
