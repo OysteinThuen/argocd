@@ -1,0 +1,34 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: "ubuntu"
+  namespace: monitoring
+spec:
+  description: "Ubuntu"
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: ubuntu
+  egress:
+    - toEndpoints:
+        # Allow communication to nginx/demoapp
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: nginx
+            app.kubernetes.io/instance: demoapp
+
+    # dns
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+
+    # needed for apt
+    - toFQDNs:
+        - matchName: "security.ubuntu.com"
+        - matchName: "ubuntu.com"
