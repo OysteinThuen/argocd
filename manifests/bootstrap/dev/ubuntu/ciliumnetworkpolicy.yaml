@@ -32,3 +32,8 @@ spec:
     - toFQDNs:
         - matchName: "security.ubuntu.com"
         - matchName: "ubuntu.com"
+    - toFQDNs:
+        - matchName: "privatelink-1-postgres-2-postgres-oot-poc.h.aivencloud.com"
+      toPorts:
+        - ports:
+          - port: "28271"
