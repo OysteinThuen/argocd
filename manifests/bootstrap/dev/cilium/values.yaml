@@ -1,6 +1,5 @@
- # https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
+# https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
 cilium:
-
   nodePort:
     enabled: true
 
@@ -21,3 +20,5 @@ cilium:
 
   gatewayAPI:
     enabled: true
+    hostNetwork:
+      enabled: true
