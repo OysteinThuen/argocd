@@ -21,4 +21,4 @@ cilium:
   gatewayAPI:
     enabled: true
     hostNetwork:
-      enabled: true
+      enabled: false
