@@ -17,6 +17,20 @@ spec:
       namespaces:
         from: Same
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: internal-app
+  namespace: bookinfo
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: internal-app
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
