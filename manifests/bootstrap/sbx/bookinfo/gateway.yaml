@@ -6,6 +6,9 @@ metadata:
   namespace: bookinfo
 spec:
   gatewayClassName: cilium
+  infrastructure:
+    annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   listeners:
   - protocol: HTTP
     port: 8080
