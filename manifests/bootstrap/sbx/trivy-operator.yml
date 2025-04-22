@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/OysteinThuen/argocd.git
     targetRevision: HEAD
-    path: 'manifests/bootstrap/dev/trivy-operator'
+    path: 'manifests/bootstrap/sbx/trivy-operator'
     helm:
       releaseName: trivy-operator
   destination:

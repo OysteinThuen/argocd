@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/OysteinThuen/argocd.git
     targetRevision: HEAD
-    path: 'manifests/bootstrap/dev/cilium'
+    path: 'manifests/bootstrap/sbx/cilium'
     helm:
       releaseName: cilium
   destination:

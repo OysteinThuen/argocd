@@ -23,7 +23,7 @@ spec:
   source:
     repoURL: https://github.com/OysteinThuen/argocd.git
     targetRevision: HEAD
-    path: 'manifests/bootstrap/dev/argocd'
+    path: 'manifests/bootstrap/sbx/argocd'
   destination:
     server: https://kubernetes.default.svc
     namespace: <chart-namespace>
